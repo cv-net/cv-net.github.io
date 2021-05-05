@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import keys from './keys';
 
 const FlexContainer = styled.div`
     display: flex;
@@ -18,13 +19,13 @@ function SiteColumns() {
 
 export default SiteColumns;
 
-function Professional() {
+function Professional(props) {
     const [ temperature, setTemp ] = useState();
     const [ iconUrl, setUrl ] = useState('');
 
     useEffect(async () => {
         try {
-            const res = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&units=imperial&appid=978bafa20e7be5bca5a988b68cb75494');
+            const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&units=imperial&appid=${keys.openweatherdata}`);
             console.log(res);
             console.log(res.data.weather[0].icon)
             setUrl(`https://openweathermap.org/img/w/${res.data.weather[0].icon}.png"`);
